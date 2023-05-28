@@ -1,6 +1,7 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+
 load_dotenv()
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
@@ -8,7 +9,6 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -19,7 +19,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Extenal Packages
     'rest_framework',
+    'drf_spectacular',
     # Internal Apps
+    'drfecommerce.product',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +54,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'drfecommerce.wsgi.application'
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -71,7 +72,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -83,7 +83,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -94,4 +93,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-REST_FRAMEWORK = {}
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Django DRF Ecommerce',
+}

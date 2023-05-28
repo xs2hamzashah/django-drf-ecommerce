@@ -5,6 +5,8 @@ pytest==7.3.1
 python-dotenv==1.0.0
 djangorestframework==3.14.0
 pytest-django-4.5.2
+django-mptt
+drf-spectacular
 
 ## Commands
 
